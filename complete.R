@@ -21,10 +21,9 @@ loadData <- function(path, pattern) {
 
 casestat <- function(df, ids){
   i = 0;
-  nobs <- matrix(NA, length(ids), 2)
-  colnames(nobs) <- c("id", "nobs")
+  nobs <- data.frame("id"=numeric(0), "nobs"=integer(0))
   for (id in ids){
-    cases <- df[df$ID %in% id & !is.na(df[colnames(df) == "sulfate"]) & !is.na(df[colnames(df) == "nitrate"]), ]
+    cases <- df[df[['ID']] == id & !is.na(df[colnames(df) == "sulfate"]) & !is.na(df[colnames(df) == "nitrate"]), ]
     nobs[(i <- i + 1),] <- c(id, nrow(cases))
   }  
   return(nobs)

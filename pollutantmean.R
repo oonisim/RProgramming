@@ -8,7 +8,6 @@ createFilePattern <- function(ids){
     }
   }
   pattern <- paste("(", pattern, ")")
-  print(pattern)
   return(pattern)
 }
 
@@ -37,7 +36,7 @@ pollutantmean <- function(directory, pollutant, id = 1:332) {
   #pattern <- createFilePattern(id)
   pattern="\\.csv"
   df <- loadData(directory, pattern)
-  print(names(df))
+  #print(names(df))
   #df <- df[df$ID %in% id & is.na(df[[pollutant]])==FALSE, ]
   df <- mean(df[df$ID %in% id, pollutant], na.rm=TRUE)
   return(df)
